@@ -2,7 +2,7 @@
 
 Official site for Sharpe & Jones: Elvin Sharpe (vocals) and Morris Jones (production).
 
-Live at https://ginlup77-source.github.io/sharpe-jones/
+Live at https://sharpejones.se (also reachable at https://ginlup77-source.github.io/sharpe-jones/)
 
 ## Updating the site
 

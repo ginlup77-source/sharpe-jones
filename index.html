@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Sharpe & Jones — Elvin Sharpe (vocals) and Morris Jones (production). Singles Friends Forever and Kryptonite out now. Live at Väven, Umeå, 20 October 2026 in the P4 Nästa Stjärna final. Booking: elvinsharpe9@gmail.com">
+<!--ARTIFACT-START-->
+<title>Sharpe & Jones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&display=swap">
+<style>
+  /* ============================================================
+     Sharpe & Jones — palette sampled from the two single covers
+     red   #F10000  (dominant red in both covers)
+     blue  #2784BB  (dominant blue in both covers + Kryptonite frame)
+     white #FFFFFF, black #000000, stage backdrops #101010 / #0D121C
+     ============================================================ */
+  :root {
+    --red: #F10000;
+    --blue: #2784BB;
+    --white: #FFFFFF;
+    --black: #000000;
+    --ink: #101010;
+    --ink-2: #0D121C;
+    --text: #FFFFFF;
+    --text-2: rgba(255, 255, 255, 0.78);
+    --text-3: rgba(255, 255, 255, 0.58);
+    --line: rgba(255, 255, 255, 0.14);
+    --line-strong: rgba(255, 255, 255, 0.34);
+    --frame: 8px;
+    --gutter: clamp(20px, 5vw, 56px);
+    --display: "Anton", "Impact", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --body: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color-scheme: dark;
+  }
+  @media (max-width: 720px) { :root { --frame: 5px; } }
+
+  html { background: var(--ink); scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    padding-block: var(--frame);
+    background: var(--ink);
+    color: var(--text);
+    font: 400 17px/1.6 var(--body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* The blue frame from the Kryptonite cover, around the whole viewport */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    border: var(--frame) solid var(--blue);
+    pointer-events: none;
+    z-index: 100;
+  }
+  * { box-sizing: border-box; }
+  img { max-width: 100%; display: block; }
+  a { color: var(--white); }
+  p { margin: 0; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .skip { position: absolute; left: 16px; top: -120px; z-index: 200; background: var(--white); color: var(--black); padding: 10px 14px; font-weight: 700; text-decoration: none; }
+  .skip:focus { top: 16px; }
+
+  .wrap { width: min(1180px, 100% - 2 * var(--gutter)); margin-inline: auto; }
+
+  /* ---------- Top bar ---------- */
+  .top {
+    position: sticky;
+    top: calc(env(safe-area-inset-top, 0px) + var(--frame));
+    z-index: 40;
+    background: rgba(16, 16, 16, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 28px; min-height: 68px; padding-block: 10px; }
+  .brand { font-family: var(--display); font-size: 26px; line-height: 1; letter-spacing: .01em; text-decoration: none; color: var(--white); }
+  .brand em { font-style: normal; color: var(--red); }
+  .nav { display: flex; flex-wrap: wrap; gap: 4px 24px; margin: 0; padding: 0; list-style: none; }
+  .nav a { display: inline-block; padding: 6px 0; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-2); text-decoration: none; border-bottom: 2px solid transparent; }
+  .nav a:hover { color: var(--white); border-color: var(--red); }
+  @media (max-width: 720px) {
+    .top .wrap { padding-block: 8px; min-height: 0; }
+    .nav { order: 3; width: 100%; gap: 2px 18px; }
+    .nav a { font-size: 12px; padding: 4px 0; }
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 15px 22px;
+    font: 700 13px/1 var(--body); letter-spacing: .12em; text-transform: uppercase;
+    text-decoration: none; border: 2px solid transparent; cursor: pointer;
+    transition: background-color .15s, color .15s, border-color .15s;
+  }
+  .btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
+  .btn-red:hover { background: var(--white); color: var(--red); border-color: var(--white); }
+  .btn-blue { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .btn-blue:hover { background: var(--white); color: var(--blue); border-color: var(--white); }
+  .btn-ghost { background: transparent; color: var(--white); border-color: var(--white); }
+  .btn-ghost:hover { background: var(--white); color: var(--black); }
+  .btn-small { padding: 11px 16px; font-size: 12px; }
+  .btn[aria-disabled="true"] { background: transparent; color: var(--text-3); border: 2px dashed var(--line-strong); cursor: default; pointer-events: none; }
+
+  /* ---------- Type ---------- */
+  .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0; font: 600 12px/1 var(--body); letter-spacing: .18em; text-transform: uppercase; color: var(--blue); }
+  .eyebrow::before { content: ""; flex: none; width: 10px; height: 10px; background: currentColor; }
+  .eyebrow-red { color: var(--red); }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; letter-spacing: -.005em; }
+  h2 { font-size: clamp(38px, 6vw, 84px); line-height: .95; max-width: 16ch; text-wrap: balance; }
+  h3 { font-size: clamp(32px, 4vw, 50px); line-height: .95; }
+  .r { color: var(--red); }
+  .b { color: var(--blue); }
+  .lede { font-size: clamp(17px, 1.5vw, 20px); color: var(--text-2); max-width: 52ch; }
+  .copy { color: var(--text-2); max-width: 62ch; }
+  .copy p + p { margin-top: 1em; }
+  .meta { margin: 0; font: 600 12px/1.5 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--text-3); }
+
+  section { padding-block: clamp(64px, 9vw, 120px); scroll-margin-top: 80px; }
+  .section-alt { background: var(--ink-2); border-block: 1px solid var(--line); }
+  .head { display: grid; gap: 16px; margin-bottom: clamp(32px, 5vw, 56px); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-block: clamp(20px, 4vw, 44px) clamp(56px, 8vw, 104px); }
+  .hero-art {
+    position: relative; overflow: hidden;
+    container-type: inline-size;
+    aspect-ratio: 1 / 1; max-width: 100%;
+    background: radial-gradient(ellipse 70% 60% at 62% 42%, #3b3b3b 0%, #1e1e1e 45%, var(--ink) 100%);
+    border: 1px solid var(--line);
+  }
+  @media (min-width: 720px) { .hero-art { aspect-ratio: 3 / 2; } }
+  .rows { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; user-select: none; }
+  .row { font-family: var(--display); font-size: 17.5vw; font-size: 17.5cqw; line-height: .88; white-space: nowrap; letter-spacing: -.01em; padding-left: 2cqw; }
+  .row.r { color: var(--red); }
+  .row.w { color: var(--white); }
+  .row.b { color: var(--blue); }
+  .row:nth-child(1) { transform: translateX(-5%); }
+  .row:nth-child(2) { transform: translateX(1%); }
+  .row:nth-child(3) { transform: translateX(-12%); }
+  .row:nth-child(4) { transform: translateX(-2%); }
+  .row:nth-child(5) { transform: translateX(3%); }
+  .cutout {
+    --ol: clamp(3px, .7cqw, 9px);
+    position: absolute; right: 3%; bottom: -2%;
+    height: 104%; width: auto; max-width: none;
+    filter: drop-shadow(var(--ol) 0 0 var(--black)) drop-shadow(calc(-1 * var(--ol)) 0 0 var(--black))
+            drop-shadow(0 var(--ol) 0 var(--black)) drop-shadow(0 calc(-1 * var(--ol)) 0 var(--black));
+  }
+  .hero-copy { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 36px 56px; align-items: end; margin-top: clamp(28px, 4vw, 48px); }
+  @media (max-width: 860px) { .hero-copy { grid-template-columns: 1fr; } }
+  .hero-copy h1 { font-size: clamp(42px, 6.4vw, 88px); line-height: .95; margin: 14px 0 18px; text-wrap: balance; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+  .notice { border: 2px solid var(--white); padding: clamp(20px, 2.6vw, 30px); display: grid; gap: 8px; justify-items: start; }
+  .notice-title { font-family: var(--display); font-size: clamp(30px, 3.2vw, 40px); line-height: 1; margin-top: 6px; }
+  .notice-date { font-weight: 600; }
+  .notice-text { color: var(--text-2); font-size: 15px; }
+  .notice .btn { margin-top: 10px; }
+
+  /* ---------- Ticker ---------- */
+  .ticker { background: var(--red); color: var(--white); overflow: hidden; }
+  .ticker-track { display: flex; width: max-content; animation: ticker 52s linear infinite; }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  .ticker-list { display: flex; align-items: center; margin: 0; padding: 0; list-style: none; }
+  .ticker-list li { display: flex; align-items: center; padding-block: 15px; font-family: var(--display); font-size: 22px; line-height: 1; letter-spacing: .01em; white-space: nowrap; }
+  .ticker-list li::after { content: ""; display: inline-block; width: 10px; height: 10px; background: var(--white); margin: 0 30px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ticker-track { animation: none; }
+    .ticker { overflow-x: auto; }
+    .btn { transition: none; }
+  }
+
+  /* ---------- Releases ---------- */
+  .releases { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(28px, 4vw, 56px); }
+  .release { display: grid; gap: 20px; align-content: start; justify-items: start; }
+  .frame { position: relative; display: block; width: 100%; }
+  .frame::after { content: ""; position: absolute; inset: 12px; border: 2px solid var(--white); pointer-events: none; }
+  .frame img { width: 100%; height: auto; }
+  .release .meta b { font-weight: 600; }
+  .release.ff .meta b { color: var(--red); }
+  .release.kr .meta b { color: var(--blue); }
+  .release blockquote { margin: 0; font-size: 18px; color: var(--text-2); }
+  .credits { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 18px; margin: 0; padding-top: 16px; border-top: 1px solid var(--line); width: 100%; font-size: 14px; color: var(--text-2); }
+  .credits dt { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-3); padding-top: 3px; }
+  .credits dd { margin: 0; }
+  .release .platforms { font-size: 13px; color: var(--text-3); }
+
+  /* ---------- Live ---------- */
+  .live-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 80px); align-items: start; }
+  @media (max-width: 860px) { .live-grid { grid-template-columns: 1fr; } }
+  .date { position: relative; border: 2px solid var(--white); padding: clamp(22px, 3vw, 36px); display: grid; gap: 2px; justify-items: start; }
+  .date .badge { position: absolute; top: 0; right: 0; background: var(--blue); color: var(--white); padding: 10px 12px; font: 700 11px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; }
+  .date .day { font-family: var(--display); font-size: clamp(112px, 17vw, 210px); line-height: .82; color: var(--red); margin-top: 18px; }
+  .date .month { font-family: var(--display); font-size: clamp(38px, 5vw, 64px); line-height: .95; }
+  .date .venue { margin-top: 16px; font-size: 20px; font-weight: 600; }
+  .date .sub { color: var(--text-3); font-size: 14px; }
+  .date .cal { margin-top: 18px; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); text-decoration: none; border-bottom: 2px solid var(--blue); padding-bottom: 2px; }
+  .date .cal:hover { color: var(--white); border-color: var(--white); }
+  .vote { border: 2px dashed var(--line-strong); padding: 24px; display: grid; gap: 12px; justify-items: start; margin-top: 32px; }
+  .vote p { color: var(--text-2); }
+  .vote strong { font: 600 12px/1 var(--body); letter-spacing: .16em; text-transform: uppercase; color: var(--blue); }
+
+  /* ---------- About ---------- */
+  .about-top { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+  @media (max-width: 860px) { .about-top { grid-template-columns: 1fr; } }
+  .about-top .frame img { aspect-ratio: 4 / 5; object-fit: cover; }
+  .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 4vw, 56px); margin-top: clamp(48px, 7vw, 88px); }
+  .person { display: grid; gap: 16px; align-content: start; }
+  .person .frame img { aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1) contrast(1.06); }
+  .person .real { color: var(--text-3); font-size: 14px; letter-spacing: .03em; margin-top: -8px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .tags li { font: 600 11px/1 var(--body); letter-spacing: .14em; text-transform: uppercase; padding: 9px 10px; border: 1px solid var(--line-strong); color: var(--text-2); }
+  .person.elvin .tags li { border-color: var(--red); }
+  .person.morris .tags li { border-color: var(--blue); }
+  .timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; margin-top: clamp(48px, 7vw, 88px); padding-top: 30px; border-top: 2px solid var(--white); }
+  @media (max-width: 860px) { .timeline { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .timeline { grid-template-columns: 1fr; } }
+  .step { position: relative; display: grid; gap: 8px; align-content: start; }
+  .step::before { content: ""; position: absolute; top: -38px; left: 0; width: 14px; height: 14px; background: var(--blue); }
+  .step.now::before { background: var(--red); }
+  .step .when { font-family: var(--display); font-size: 28px; line-height: 1; }
+  .step .what { color: var(--text-2); font-size: 15px; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 72px); align-items: end; }
+  @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+  .email { display: inline-block; font: 700 clamp(22px, 3.4vw, 42px)/1.15 var(--body); color: var(--white); text-decoration: none; overflow-wrap: anywhere; border-bottom: 3px solid var(--red); padding-bottom: 4px; }
+  .email:hover { color: var(--red); }
+  .contact-side { display: grid; gap: 18px; justify-items: start; }
+
+  /* ---------- Sign-off + footer ---------- */
+  .signoff { position: relative; overflow: hidden; container-type: inline-size; height: 26cqw; border-top: 1px solid var(--line); user-select: none; }
+  .signoff .rows { justify-content: flex-start; }
+  .signoff .row { font-size: 12vw; font-size: 12cqw; }
+  footer { border-top: 1px solid var(--line); padding-block: 28px 36px; font-size: 13px; color: var(--text-3); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px; }
+  footer ul { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding: 0; list-style: none; }
+  footer a { color: var(--text-2); text-decoration: none; }
+  footer a:hover { color: var(--white); }
+</style>
+<!--HEAD-END-->
+</head>
+<body>
+<!--BODY-START-->
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Sharpe &amp; Jones — home">Sharpe <em>&amp;</em> Jones</a>
+    <ul class="nav">
+      <li><a href="#music">Music</a></li>
+      <li><a href="#live">Live</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn btn-red btn-small" href="mailto:elvinsharpe9@gmail.com?subject=Booking%20request%20%E2%80%93%20Sharpe%20%26%20Jones">Book us</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-art">
+        <div class="rows" aria-hidden="true">
+          <div class="row r">Sharpe &amp; Jones</div>
+          <div class="row w">Sharpe &amp; Jones</div>
+          <div class="row r">Sharpe &amp; Jones</div>
+          <div class="row b">Sharpe &amp; Jones</div>
+          <div class="row w">Sharpe &amp; Jones</div>
+        </div>
+        <img class="cutout" src="img/cutout-duo.png" alt="Elvin Sharpe and Morris Jones walking side by side" width="801" height="1200">
+      </div>
+
+      <div class="hero-copy">
+        <div>
+          <p class="eyebrow">Vocals &amp; production duo · Västerbotten, Sweden</p>
+          <h1 id="hero-title"><span class="sr-only">Sharpe &amp; Jones. </span>Elvin Sharpe <span class="r">sings.</span> Morris Jones <span class="b">produces.</span></h1>
+          <p class="lede">Sharpe &amp; Jones write every song together — Elvin's voice out front, Morris's sound around it. Two singles are out now, and the first song they ever wrote is in the P4 Nästa Stjärna final.</p>
+          <div class="cta">
+            <a class="btn btn-red" href="https://distrokid.com/hyperfollow/elvinsharpe/kryptonite" target="_blank" rel="noopener">Listen to Kryptonite</a>
+            <a class="btn btn-ghost" href="https://distrokid.com/hyperfollow/elvinsharpe/friends-forever" target="_blank" rel="noopener">Listen to Friends Forever</a>
+          </div>
+        </div>
+        <aside class="notice" aria-label="Next show">
+          <p class="eyebrow eyebrow-red">Next · P4 Nästa Stjärna final</p>
+          <p class="notice-title">Väven, Umeå</p>
+          <p class="notice-date">Tuesday 20 October 2026</p>
+          <p class="notice-text">Friends Forever competes in the P4 Nästa Stjärna Västerbotten final. The voting link will be posted here as soon as it's announced.</p>
+          <a class="btn btn-ghost btn-small" href="#live">Show details</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-label="Latest news">
+    <div class="ticker-track">
+      <ul class="ticker-list">
+        <li>Friends Forever — in the P4 Nästa Stjärna final</li>
+        <li>Live at Väven, Umeå — 20 October 2026</li>
+        <li>Kryptonite — out now</li>
+        <li>Friends Forever — out now</li>
+        <li>Booking: elvinsharpe9@gmail.com</li>
+      </ul>
+      <ul class="ticker-list" aria-hidden="true">
+        <li>Friends Forever — in the P4 Nästa Stjärna final</li>
+        <li>Live at Väven, Umeå — 20 October 2026</li>
+        <li>Kryptonite — out now</li>
+        <li>Friends Forever — out now</li>
+        <li>Booking: elvinsharpe9@gmail.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="music" aria-labelledby="music-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Releases</p>
+        <h2 id="music-title">Two singles. Both written together.</h2>
+      </div>
+      <div class="releases">
+        <article class="release ff">
+          <a class="frame" href="https://distrokid.com/hyperfollow/elvinsharpe/friends-forever" target="_blank" rel="noopener" aria-label="Listen to Friends Forever">
+            <img src="img/cover-friends-forever.webp" alt="Friends Forever cover art: Elvin and Morris walking back to back in black and white, the title set in red and blue" width="1000" height="1000">
+          </a>
+          <p class="meta"><b>Debut single</b> · Out now</p>
+          <h3>Friends Forever</h3>
+          <blockquote>The first song Sharpe &amp; Jones ever wrote — and the one that carried them into the P4 Nästa Stjärna final.</blockquote>
+          <dl class="credits">
+            <dt>Vocals</dt><dd>Elvin Sharpe</dd>
+            <dt>Production</dt><dd>Morris Jones</dd>
+            <dt>Written by</dt><dd>Elvin Sharpe &amp; Morris Jones</dd>
+          </dl>
+          <a class="btn btn-red" href="https://distrokid.com/hyperfollow/elvinsharpe/friends-forever" target="_blank" rel="noopener">Listen to Friends Forever</a>
+          <p class="platforms">Spotify, Apple Music, YouTube and more — one link for every platform.</p>
+        </article>
+
+        <article class="release kr">
+          <a class="frame" href="https://distrokid.com/hyperfollow/elvinsharpe/kryptonite" target="_blank" rel="noopener" aria-label="Listen to Kryptonite">
+            <img src="img/cover-kryptonite.webp" alt="Kryptonite cover art: Elvin sitting on stage in a striped shirt, the title repeated in red, white and blue" width="1000" height="1000">
+          </a>
+          <p class="meta"><b>Second single</b> · Out now</p>
+          <h3>Kryptonite</h3>
+          <blockquote>Every superhero has a weakness. Ours is called Kryptonite.</blockquote>
+          <dl class="credits">
+            <dt>Vocals</dt><dd>Elvin Sharpe</dd>
+            <dt>Production</dt><dd>Morris Jones</dd>
+            <dt>Written by</dt><dd>Elvin Sharpe &amp; Morris Jones</dd>
+          </dl>
+          <a class="btn btn-blue" href="https://distrokid.com/hyperfollow/elvinsharpe/kryptonite" target="_blank" rel="noopener">Listen to Kryptonite</a>
+          <p class="platforms">Spotify, Apple Music, YouTube and more — one link for every platform.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="live" class="section-alt" aria-labelledby="live-title">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow eyebrow-red">Live · P4 Nästa Stjärna</p>
+        <h2 id="live-title">Friends Forever is in the <span class="r">P4 Nästa Stjärna</span> final.</h2>
+      </div>
+      <div class="live-grid">
+        <div class="date">
+          <span class="badge">District final</span>
+          <span class="day">20</span>
+          <span class="month">October 2026</span>
+          <span class="venue">Väven · Umeå</span>
+          <span class="sub">P4 Nästa Stjärna Västerbotten · Set time to be announced</span>
+          <a class="cal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sharpe%20%26%20Jones%20%E2%80%93%20P4%20N%C3%A4sta%20final&amp;dates=20261020/20261021&amp;location=V%C3%A4ven%2C%20Ume%C3%A5&amp;details=Friends%20Forever%20live%20at%20the%20P4%20N%C3%A4sta%20V%C3%A4sterbotten%20final." target="_blank" rel="noopener">Add to Google Calendar</a>
+        </div>
+        <div>
+          <div class="copy">
+            <p>P4 Nästa Stjärna is Sveriges Radio's nationwide competition for new music and new talent. Every local P4 station holds its own final and sends one act on to the national final. Friends Forever — the first song Sharpe &amp; Jones ever wrote — is in the Västerbotten final, live on stage at Väven in Umeå on Tuesday 20 October.</p>
+            <p>Listeners help decide who goes through. Voting details and the link will be posted here the moment they're announced.</p>
+          </div>
+          <div class="vote">
+            <strong>Vote for Friends Forever</strong>
+            <p id="vote-note">Voting isn't open yet. Check back here — this box turns live the day it opens.</p>
+            <a class="btn btn-ghost" id="vote-link" href="#live" aria-disabled="true">Voting link coming soon</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-title">
+    <div class="wrap">
+      <div class="about-top">
+        <div class="frame">
+          <img src="img/duo-blue.jpg" alt="Morris Jones standing and Elvin Sharpe sitting on a chair, lit in blue" width="1054" height="1400">
+        </div>
+        <div>
+          <div class="head">
+            <p class="eyebrow">The duo</p>
+            <h2 id="about-title">The voice and the sound.</h2>
+          </div>
+          <div class="copy">
+            <p>Sharpe &amp; Jones are Elvin Sharpe and Morris Jones. They started writing together in November 2025 and haven't stopped since: two singles so far, all of it co-written, with Elvin out front on vocals and Morris shaping the production.</p>
+            <p>What one starts, the other finishes. Elvin paints the broad strokes; Morris fine-tunes them until they're right. Everything the duo releases passes through both of them.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="people">
+        <article class="person elvin">
+          <div class="frame">
+            <img src="img/elvin.jpg" alt="Elvin Sharpe sitting in a spotlight, black and white" width="934" height="1400">
+          </div>
+          <p class="eyebrow eyebrow-red">Vocals</p>
+          <h3>Elvin Sharpe</h3>
+          <p class="real">Elvin Schäder</p>
+          <p class="copy">The voice of the duo. Elvin has played guitar for years and picks up whatever a song needs, both when it's written and when it's recorded. Vulnerable but sure of himself, he writes to make sense of things — and to help others do the same.</p>
+          <ul class="tags">
+            <li>Vocals</li><li>Guitar</li><li>Songwriting</li>
+          </ul>
+        </article>
+
+        <article class="person morris">
+          <div class="frame">
+            <img src="img/morris.jpg" alt="Morris Jones walking past a window, light falling through the blinds" width="916" height="1400">
+          </div>
+          <p class="eyebrow">Production</p>
+          <h3>Morris Jones</h3>
+          <p class="real">Albin Morris Allmyr</p>
+          <p class="copy">The producer. Morris designs the sound: Elvin sketches the song, Morris builds the world around it and mixes it until it sits right. Everything the duo releases passes through his hands before it reaches your ears.</p>
+          <ul class="tags">
+            <li>Production</li><li>Sound design</li><li>Mix</li><li>Songwriting</li>
+          </ul>
+        </article>
+      </div>
+
+      <ol class="timeline" aria-label="Timeline">
+        <li class="step">
+          <span class="when">Nov 2025</span>
+          <span class="what">First writing sessions. Sharpe &amp; Jones begins.</span>
+        </li>
+        <li class="step">
+          <span class="when">Friends Forever</span>
+          <span class="what">Debut single — written together from day one.</span>
+        </li>
+        <li class="step">
+          <span class="when">Kryptonite</span>
+          <span class="what">Second single. Every superhero has a weakness.</span>
+        </li>
+        <li class="step now">
+          <span class="when">20 Oct 2026</span>
+          <span class="what">P4 Nästa Stjärna Västerbotten final at Väven, Umeå.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="contact" class="section-alt" aria-labelledby="contact-title">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <div class="head">
+            <p class="eyebrow">Booking &amp; contact</p>
+            <h2 id="contact-title">Book Sharpe &amp; Jones.</h2>
+          </div>
+          <p class="copy">Shows, events, collaborations, press — one address for all of it. We answer as fast as we can.</p>
+        </div>
+        <div class="contact-side">
+          <a class="email" href="mailto:elvinsharpe9@gmail.com">elvinsharpe9@gmail.com</a>
+          <a class="btn btn-red" href="mailto:elvinsharpe9@gmail.com?subject=Booking%20request%20%E2%80%93%20Sharpe%20%26%20Jones">Send an email</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="signoff" aria-hidden="true">
+  <div class="rows">
+    <div class="row r">Sharpe &amp; Jones</div>
+    <div class="row w">Sharpe &amp; Jones</div>
+    <div class="row b">Sharpe &amp; Jones</div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Sharpe &amp; Jones · Elvin Sharpe (vocals) &amp; Morris Jones (production)</p>
+    <ul>
+      <li><a href="https://distrokid.com/hyperfollow/elvinsharpe/kryptonite" target="_blank" rel="noopener">Kryptonite</a></li>
+      <li><a href="https://distrokid.com/hyperfollow/elvinsharpe/friends-forever" target="_blank" rel="noopener">Friends Forever</a></li>
+      <li><a href="mailto:elvinsharpe9@gmail.com">elvinsharpe9@gmail.com</a></li>
+      <li><a href="#top">Back to top</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "Sharpe & Jones",
+  "foundingDate": "2025-11",
+  "email": "elvinsharpe9@gmail.com",
+  "member": [
+    { "@type": "Person", "name": "Elvin Sharpe", "alternateName": "Elvin Schäder", "jobTitle": "Vocals" },
+    { "@type": "Person", "name": "Morris Jones", "alternateName": "Albin Morris Allmyr", "jobTitle": "Producer" }
+  ],
+  "track": [
+    { "@type": "MusicRecording", "name": "Friends Forever", "url": "https://distrokid.com/hyperfollow/elvinsharpe/friends-forever" },
+    { "@type": "MusicRecording", "name": "Kryptonite", "url": "https://distrokid.com/hyperfollow/elvinsharpe/kryptonite" }
+  ],
+  "event": {
+    "@type": "MusicEvent",
+    "name": "P4 Nästa Stjärna Västerbotten final",
+    "startDate": "2026-10-20",
+    "location": { "@type": "Place", "name": "Väven", "address": "Umeå, Sweden" },
+    "performer": { "@type": "MusicGroup", "name": "Sharpe & Jones" }
+  }
+}
+</script>
+<script>
+  (function () {
+    // ---------------------------------------------------------------
+    // VOTING LINK: when P4 Nästa Stjärna announces where to vote, paste the
+    // address between the quotes below. The "Voting link coming soon"
+    // button in the Live section then turns into a live red "Vote" button.
+    // ---------------------------------------------------------------
+    var VOTE_URL = "";
+
+    var link = document.getElementById("vote-link");
+    var note = document.getElementById("vote-note");
+    if (VOTE_URL && link) {
+      link.href = VOTE_URL;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.removeAttribute("aria-disabled");
+      link.className = "btn btn-red";
+      link.textContent = "Vote for Friends Forever";
+      if (note) note.textContent = "Voting is open. Every vote counts — thank you.";
+    }
+  })();
+</script>
+<!--ARTIFACT-END-->
+</body>
+</html>
